@@ -1,0 +1,7 @@
+[submodule "vis/plugins/statusline"]
+	path = vis/plugins/statusline
+	url = https://github.com/jpaulogg/vis-statusline
+[submodule "vis/plugins/ins-completion"]
+	path = vis/plugins/ins-completion
+	url = https://github.com/jpaulogg/vis-ins-completion
+	branch = local

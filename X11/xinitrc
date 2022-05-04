@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# X11
+xwallpaper --stretch "$HOME/imagens/Wallpapers/minas-gerais.jpg"
+xset r rate 300 50
+xbacklight -set 7
+
+# background programns
+xcompmgr &
+unclutter -grab -idle 2 &
+batmon &
+
+# administrador de janelas
+slstatus &
+exec dwm

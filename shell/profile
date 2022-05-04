@@ -1,0 +1,36 @@
+#!/bin/sh
+set -a
+
+# programas padrões
+TERMINAL="st"
+EDITOR="vis"
+BROWSER="firefox"
+
+# XDG
+XDG_CONFIG_HOME="$HOME/.config"
+XDG_DATA_HOME="$HOME/.local/share"
+XDG_CACHE_HOME="$HOME/.local/var/cache"
+
+# X11
+XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
+XAUTHORITY="$XDG_CONFIG_HOME/X11/Xauthority"
+
+# shell
+PATH="${PATH+$PATH:}$HOME/.local/bin"
+ENV="$XDG_CONFIG_HOME/shell/init.sh"
+INPUTRC="$XDG_CONFIG_HOME/shell/inputrc"
+ZDOTDIR="$XDG_CONFIG_HOME/shell"
+
+# outros
+R_ENVIRON_USER="$XDG_CONFIG_HOME/R/Renviron"
+GNUPGHOME="$XDG_DATA_HOME/gnupg"
+
+# cores - less(1)
+LESSHISTFILE="-"
+LESS_TERMCAP_mb="$(printf '%b' '\033[1;31m')"
+LESS_TERMCAP_md="$(printf '%b' '\033[1;36m')"
+LESS_TERMCAP_me="$(printf '%b' '\033[0m')"
+LESS_TERMCAP_so="$(printf '%b' '\033[1;46;30m')"
+LESS_TERMCAP_se="$(printf '%b' '\033[0m')"
+LESS_TERMCAP_us="$(printf '%b' '\033[1;92m')"
+LESS_TERMCAP_ue="$(printf '%b' '\033[0m')"

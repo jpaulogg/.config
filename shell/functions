@@ -1,0 +1,47 @@
+#!/bin/sh
+
+# visualize tree
+vt() { tree -CF -L 3 "$@" | less -R; }
+
+# edit file
+ef() {
+    local choice
+    choice=$(sf "$1")
+	[ -n "$choice" ] && vis "$choice" || echo
+}
+
+# working directory
+wd() {
+    local choice start
+	clear
+    choice=$(sd "$1")
+	clear
+	[ -d "$choice" ] && cd "$choice"
+}
+
+# select file
+sf() {
+    local find_prune start
+    find_prune='.*'
+    Find "$1" | vis-menu -i
+}
+
+# select directory
+sd() {
+	local find_type start
+    find_type='d'
+    start=$HOME
+    Find "$1" | vis-menu -i -t -l 8
+}
+
+# find wrapper
+Find() {
+	find "${start:-$PWD}"* \
+		-maxdepth 4 \
+		-name "${find_prune:-.git}" -prune \
+		-o -type "${find_type:-f}" -name "$1*" \
+		-print 2> /dev/null \
+		| head -n 5000 \
+		| sed "s@^\($PWD\|\.\)/@@" \
+		| sort
+}

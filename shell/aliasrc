@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# opções padrões
+alias cp='cp -iv' \
+      mv='mv -iv' \
+      rm='rm -Iv' \
+      mkdir='mkdir -pv' \
+      ls="ls -phCN --color=auto --group-directories-first" \
+      grep="grep --color=auto --exclude-dir='.git' -I" \
+      diff="diff --color=auto" \
+      aspell="aspell --home-dir=$XDG_DATA_HOME/spell -W 3" \
+      dvtm="dvtm -c /tmp/dvtm-cmd-fifo.$$"
+
+# preguiça
+alias ..='cd ..' \
+      xsleep='sleep 0.5; xset s activate' \
+      gpom='git push origin master' \
+      mux11='mupdf-x11' \
+      mugl='mupdf-gl'

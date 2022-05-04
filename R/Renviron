@@ -1,0 +1,3 @@
+R_HOME_USER=/home/jpgg/.local/lib/R
+R_PROFILE_USER=/home/jpgg/.config/R/Rprofile
+R_HISTFILE=/home/jpgg/.local/var/cache/R/histfile
