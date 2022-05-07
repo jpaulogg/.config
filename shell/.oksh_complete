@@ -1,0 +1,26 @@
+#!/bin/ksh
+
+# Matrizes de argumentos usada pelo oksh(1) para completar comandos
+set -A complete_man -- $(cat $XDG_CACHE_HOME/man)
+set -A complete_doas -- xbps-install xbps-remove mount umount tlp-stat make clean install remove poweroff
+set -A complete_find -- -maxdepth -name -prune -type -print
+set -A complete_git_1 -- branch commit clone checkout diff ls-files merge push rebase restore remote submodule status stash switch
+set -A complete_git -- --abort --amend --cached --continue --depth --rebase-merges HEAD~1 branch fork local master mybuild origin get-url set-url
+
+# função que gera matriz de argumentos
+gencomptable() {
+	if [ $# -eq 0 ]; then
+		set -A complete_gencomptable -- $(dmenu_path)
+	else
+		local cmd=$1
+		if [ $# -eq 2 ]; then
+			# o primeiro argumento é o comando, o segundo é a alias
+			alias $2=$1
+		fi
+		set -A complete_$2 -- \
+			$($1 --help \
+				| tr -cs '[:alpha:]-' '\n' \
+				| grep '^-.' \
+				| sort -u)
+	fi 2> /dev/null
+}
